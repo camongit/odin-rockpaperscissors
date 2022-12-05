@@ -54,13 +54,15 @@ function game() {
         console.log(playRound(computerChoice, playerChoice));
     }
     if (playerScore == computerScore) {
-        finalScore = "Draw";
+        finalScore = "It's a Draw";
     } else if (playerScore > computerScore) {
-        finalScore = "Win";
+        finalScore = "Winner Winner Chicken Dinner!";
     } else {
-        finalScore = "Lose";
+        finalScore = "Take The L";
     }
-console.log(`You ${finalScore} You ${playerScore} Tandy ${computerScore} Thanks for Playing!`);
+console.log(`${finalScore}`);
+console.log(`You: ${playerScore} Tandy: ${computerScore}`);
+console.log(`Thanks for Playing!`);
 }
 
 let playerScore = 0;
