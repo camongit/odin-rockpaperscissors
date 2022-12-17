@@ -1,3 +1,41 @@
 body {
     background-color: black;
+    color: white;
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.input {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.button {
+    background-color: black;
+    border-style: none;
+    border-radius: 5px;
+}
+
+.bottom-control {
+    display: flex;
+    justify-content: center;
+}
+.reset {
+    border-style: none;
+    border: solid white 2px;
+    border-radius: 2px;
+    padding: 8px;
+    margin: 8px;
+    font-size: 24px;
+    background-color: black;
+    color: white;
+
+}
+
+.currentResult, .runningScore, .final {
+    font-size: 20px;
+    text-align: center;
 }

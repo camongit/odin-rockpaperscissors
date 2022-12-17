@@ -13,8 +13,12 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-    let userInput = prompt("Select Rock, Paper, or Scissors");
-    return userInput.toLowerCase();
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            displayControl(button.id);
+        });
+    });
 }
 
 function playRound(computerChoice, playerChoice) {
@@ -47,28 +51,49 @@ function playRound(computerChoice, playerChoice) {
     }
 }
 
-function game() {
-    for (i = 0; i < 5; ++i) {
-        const playerChoice = getPlayerChoice();
-        const computerChoice = getComputerChoice();
-        console.log(playRound(computerChoice, playerChoice));
-    }
-    if (playerScore == computerScore) {
+function displayControl(playerChoice) {
+    const computerChoice = getComputerChoice();
+    
+    const currentResult = document.querySelector('.currentResult');
+    currentResult.textContent = playRound(computerChoice, playerChoice);
+
+    const runningScore = document.querySelector('.runningScore');
+    runningScore.textContent = `You: ${playerScore} Tandy: ${computerScore}`;
+
+    //If you don't wrap the click function in an anonymous functions it will trigger before click//
+    const reset = document.querySelector('.reset');
+    reset.addEventListener('click', () => {
+        gameReset(final, runningScore, currentResult)
+    });
+
+    if (playerScore >= 5 || computerScore >= 5) {
+
+        if (playerScore == computerScore) {
         finalScore = "It's a Draw";
-    } else if (playerScore > computerScore) {
+        } else if (playerScore > computerScore) {
         finalScore = "Winner Winner Chicken Dinner!";
-    } else {
+        } else {
         finalScore = "Take The L";
+        }
+
     }
-console.log(`${finalScore}`);
-console.log(`You: ${playerScore} Tandy: ${computerScore}`);
-console.log(`Thanks for Playing!`);
+
+    const final = document.querySelector('.final');
+    final.textContent = `${finalScore}`;
 }
+
+function gameReset(final, runningScore, currentResult) {
+    playerScore = 0;
+    computerScore = 0;
+    finalScore = "";
+    currentResult.textContent = "";
+    runningScore.textContent = "";
+    final.textContent = "";
+}
+
 
 let playerScore = 0;
 let computerScore = 0;
 let finalScore;
-game();
 
-
-
+getPlayerChoice();
